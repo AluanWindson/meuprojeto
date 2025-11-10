@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quem Somos — Delícias da GK</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1a1a1a;
+      color: #fff;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #f1c40f; /* amarelo principal */
+      padding: 20px;
+      text-align: center;
+      color: #1a1a1a;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+      flex: 1;
+    }
+
+    .container img {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+      margin-right: 40px;
+      transition: transform 0.3s ease;
+    }
+
+    .container img:hover {
+      transform: scale(1.03);
+    }
+
+    .texto {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .texto h2 {
+      font-size: 32px;
+      color: #f1c40f; /* amarelo para o título */
+      margin-bottom: 15px;
+    }
+
+    .texto p {
+      font-size: 18px;
+      margin-bottom: 15px;
+      text-align: justify;
+      color: #ddd;
+    }
+
+    .voltar {
+      display: inline-block;
+      margin: 40px auto;
+      padding: 12px 30px;
+      background-color: #f1c40f; /* amarelo para o botão */
+      color: #1a1a1a;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 10px rgba(241, 196, 15, 0.3);
+    }
+
+    .voltar:hover {
+      background-color: #ffdd00; /* amarelo mais claro no hover */
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: #111;
+      text-align: center;
+      padding: 15px;
+      color: #aaa;
+      font-size: 14px;
+      border-top: 1px solid #333;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .container img {
+        margin: 0 0 30px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>🍽️ Quem Somos</header>
+
+  <div class="container">
+    <img src="https://img.freepik.com/vetores-premium/casal-negro-e-mulher-cozinhando-juntos-ilustracao-plana-de-marido-e-mulher_916189-163.jpg?w=360" alt="Casal cozinhando no Delícias da GK">
+    
+    <div class="texto">
+      <h2>Nossa História</h2>
+      <p>
+        O <strong>Delícias da GK</strong> nasceu de um sonho: levar o sabor caseiro e o carinho da cozinha familiar para a mesa de cada cliente.
+        Começamos pequenos, preparando refeições com amor e ingredientes frescos, e fomos conquistando o paladar da vizinhança.
+      </p>
+      <p>
+        Hoje, seguimos com o mesmo propósito — oferecer pratos deliciosos, feitos com dedicação, e entregar momentos de alegria em cada pedido.
+        Aqui, cada refeição é feita como se fosse para a nossa própria família. ❤️
+      </p>
+    </div>
+  </div>
+
+  <div style="text-align:center;">
+    <a href="{% url 'index' %}" class="voltar">⬅ Voltar para o Início</a>
+  </div>
+
+  <footer>
+    © 2025 Delícias da GK — Feito com amor e sabor 💕
+  </footer>
+</body>
+</html>

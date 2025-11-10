@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delícias da GK — Nossos Pratos</title>
+  <style>
+    body {
+      background: #1a1a1a;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffd600;
+      font-size: 2.8em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px #ffd600;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #2c2c2c, #333333);
+      border-radius: 15px;
+      padding: 15px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(255, 214, 0, 0.3);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      color: #ffd600;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.95em;
+      color: #cccccc;
+      margin-bottom: 10px;
+    }
+
+    .card span {
+      font-weight: 600;
+      color: #1a1a1a;
+      background: #ffd600;
+      padding: 5px 10px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    /* Botão Voltar - aparência igual à sua referência */
+    .btn-voltar {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      background-color: #28a745; /* verde */
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      margin: 30px auto 0 auto;
+      width: max-content;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-voltar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.55);
+    }
+
+    .btn-voltar .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 22px;
+      background: #3b82f6; /* azul */
+      color: #ffffff;
+      border-radius: 6px;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25) inset;
+    }
+
+    @media (max-width: 800px) {
+      .card-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>#NossosPratos</h1>
+    <div class="card-container">
+      <div class="card">
+        <img src="{% static '../static/crud/pratos/WhatsApp Image 2025-10-22 at 20.30.05 (1).jpeg' %}" alt="Feijoada Completa">
+        <h3>Frango a parmegiana</h3>
+        <p>Frango a parmegiana preparado com queijo mussarela, tomate e orégano.</p>
+        <span>R$ 20,00</span>
+      </div>
+
+      <div class="card">
+        <img src="{% static '../static/crud/pratos/WhatsApp Image 2025-10-22 at 20.30.05 (2).jpeg' %}" alt="Strogonoff de Frango">
+        <h3>Rocambole de carne</h3>
+        <p>Rocambole de carne, temperado com hortelã pimenta, calabresa e cheiro verde.</p>
+        <span>R$ 16,00</span>
+      </div>
+
+      <div class="card">
+        <img src="{% static '../static/crud/pratos/WhatsApp Image 2025-10-22 at 20.30.05 (3).jpeg' %}" alt="Escondidinho de Carne">
+        <h3>Gorjão de frango</h3>
+        <p>Gorjão de frango, preparado na farinha panko, acompanhado de purê de batata.</p>
+        <span>R$ 16,00</span>
+      </div>
+
+      <div class="card">
+        <img src="{% static '../static/crud/pratos/WhatsApp Image 2025-10-22 at 20.30.05 (4).jpeg' %}" alt="Moqueca de Peixe">
+        <h3>Bide de contrafilé empanado</h3>
+        <p>Contrafilé empanado na farinha panko acebolado e acompanhando fritas.</p>
+        <span>R$ 23,00</span>
+      </div>
+
+      <div class="card">
+        <img src="{% static '../static/crud/pratos/WhatsApp Image 2025-10-22 at 20.30.05 (5).jpeg' %}" alt="Macarrão ao Molho Branco">
+        <h3>Almôndegas ao molho</h3>
+        <p>Almondegas servida ao molho vermelho, acompanhada de farofa e legumes.</p>
+        <span>R$ 16,00</span>
+      </div>
+
+      <div class="card">
+        <img src="{% static '../static/crud/pratos/WhatsApp Image 2025-10-22 at 20.30.05.jpeg' %}" alt="Salada Especial">
+        <h3>Carne assada com aipim</h3>
+        <p>Carne assada na pressão, com farofa e aipim frito.</p>
+        <span>R$ 25,00</span>
+      </div>
+    </div>
+
+    <!-- Botão Voltar com SVG 24x24 (igual à aparência mostrada) -->
+    <a href="{% url 'index' %}" class="btn-voltar" role="button" aria-label="Voltar para página inicial">
+      <span class="icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+          <rect width="24" height="24" rx="5" fill="#3b82f6"/>
+          <path d="M15 7L9 12l6 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </span>
+      <span>Voltar</span>
+    </a>
+  </div>
+</body>
+</html>

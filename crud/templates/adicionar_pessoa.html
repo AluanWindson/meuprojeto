@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Adicionar Pessoa - Delícias da GK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd600;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 8px #ffd600;
+        }
+
+        form {
+            background: linear-gradient(145deg, #2c2c2c, #333333);
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        form:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 214, 0, 0.3);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            border: 1px solid #555555;
+            border-radius: 10px;
+            font-size: 1em;
+            background: #1a1a1a;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder {
+            color: #cccccc;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #ffd600;
+            box-shadow: 0 0 8px #ffd600;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background: #ffd600;
+            color: #1a1a1a;
+            box-shadow: 0 0 6px #ffd600, 0 0 12px #ffd600 inset;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 12px #ffd600, 0 0 18px #ffd600 inset;
+            transform: scale(1.03);
+        }
+
+        .btn-secondary {
+            background: #dc3545;
+            color: #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background: #b02a37;
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 600px) {
+            form {
+                padding: 20px;
+            }
+            .btn {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Adicionar Pessoa à Lista de Espera</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" placeholder="Digite o nome" required>
+
+        <label for="cpf">CPF</label>
+        <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF" required>
+
+        <label for="idade">Idade</label>
+        <input type="number" name="idade" id="idade" placeholder="Digite a idade" min="0" required>
+
+        <label for="telefone">Telefone</label>
+        <input type="tel" name="telefone" id="telefone" placeholder="Digite o telefone" required>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Digite o email" required>
+
+        <label for="qtd_pessoas">Quantidade de Pessoas</label>
+        <input type="number" name="qtd_pessoas" id="qtd_pessoas" placeholder="Digite a quantidade" min="1" required>
+
+        <!-- Campo de prato com as opções do index (Pratos do Dia + Acompanhamentos) -->
+        <label for="prato_selecionado">Prato Selecionado</label>
+        <select name="prato_selecionado" id="prato_selecionado" required>
+            <option value="" disabled selected>Selecione um prato</option>
+            <optgroup label="Pratos do Dia">
+                <option value="Feijoada Completa">Feijoada Completa - R$25,00</option>
+                <option value="Strogonoff de Frango">Strogonoff de Frango - R$18,00</option>
+                <option value="Escondidinho de Carne">Escondidinho de Carne - R$22,00</option>
+                <option value="Gorjão de frango">Gorjão de frango - R$16,00</option>
+                <option value="Almondegas ao molho">Almondegas ao molho - R$16,00</option>
+                <option value="Bife de contrafilé acebolado">Bife de contrafilé acebolado - R$22,00</option>
+            </optgroup>
+            
+        </select>
+        <!-- fim campo prato -->
+
+        <button type="submit" class="btn btn-primary" onclick="return confirm('Pessoa adicionada com sucesso!')">Adicionar</button>
+        <a href="{% url 'lista_espera' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

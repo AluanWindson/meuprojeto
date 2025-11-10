@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Confirmar Exclusão - Delícias da GK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd600;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 8px #ffd600;
+        }
+
+        form {
+            background: linear-gradient(145deg, #2c2c2c, #333333);
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        form:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 214, 0, 0.3);
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .btn-primary {
+            background: #ffd600;
+            color: #1a1a1a;
+            box-shadow: 0 0 6px #ffd600, 0 0 12px #ffd600 inset;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 12px #ffd600, 0 0 18px #ffd600 inset;
+            transform: scale(1.03);
+        }
+
+        .btn-secondary {
+            background: #dc3545;
+            color: #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background: #b02a37;
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 600px) {
+            form {
+                padding: 20px;
+            }
+            .btn {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Confirmar Exclusão</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <p>Você tem certeza que deseja excluir a pessoa "<strong>{{ pessoa.nome }}</strong>"?</p>
+        <button type="submit" class="btn btn-primary">Sim, excluir</button>
+        <a href="{% url 'lista_espera' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

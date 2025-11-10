@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lista de Espera - Delícias da GK</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #1a1a1a;
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffd600;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px #ffd600;
+    }
+
+    .button {
+      background: #ffd600;
+      color: #1a1a1a;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .button:hover {
+      box-shadow: 0 0 12px #ffd600, 0 0 18px #ffd600 inset;
+      transform: scale(1.05);
+    }
+
+    .button-delete {
+      background: #dc3545;
+      color: #ffffff;
+    }
+
+    .button-delete:hover {
+      background: #b02a37;
+    }
+
+    .button-back {
+      background: #28a745;
+      color: #ffffff;
+    }
+
+    .button-back:hover {
+      background: #1e7e34;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #2c2c2c;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      margin-bottom: 30px;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid #444;
+      color: #ffffff;
+    }
+
+    th {
+      background: #ffd600;
+      color: #1a1a1a;
+      font-weight: 600;
+      text-shadow: 0 0 4px #000;
+    }
+
+    tr:nth-child(even) {
+      background: #333;
+    }
+
+    tr:hover {
+      background: #444;
+      transition: background 0.3s;
+    }
+
+    .stars span {
+      font-size: 1.2em;
+      color: #ffd600;
+    }
+
+    .count-info {
+      text-align: center;
+      font-size: 1.2em;
+      color: #fff;
+      margin-top: 20px;
+      background: #2c2c2c;
+      padding: 15px 20px;
+      border-radius: 10px;
+      border: 1px solid #444;
+      box-shadow: 0 4px 15px rgba(255, 214, 0, 0.3);
+    }
+
+    .comentarios-container {
+      margin-top: 30px;
+      background: #2c2c2c;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .comentario-item {
+      border-bottom: 1px solid #444;
+      padding: 12px 0;
+    }
+
+    .comentario-item:last-child {
+      border-bottom: none;
+    }
+
+    .comentario-item h3 {
+      margin-bottom: 6px;
+      color: #ffd600;
+      font-size: 1.1em;
+    }
+
+    .comentario-item p {
+      margin-bottom: 4px;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      th, td {
+        padding: 10px 12px;
+      }
+      .button {
+        padding: 8px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Lista de Espera</h1>
+    <a href="{% url 'adicionar_pessoa' %}" class="button">➕ Adicionar Pessoa</a>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Idade</th>
+          <th>Telefone</th>
+          <th>Email</th>
+          <th>Qtd. Pessoas</th>
+          <th>Prato Selecionado</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pessoa in pessoas %}
+        <tr>
+          <td>{{ pessoa.nome }}</td>
+          <td>{{ pessoa.cpf }}</td>
+          <td>{{ pessoa.idade }}</td>
+          <td>{{ pessoa.telefone }}</td>
+          <td>{{ pessoa.email }}</td>
+          <td>{{ pessoa.qtd_pessoas }}</td>
+          <td>{{ pessoa.prato_selecionado }}</td>
+          <td>
+            <a href="{% url 'editar' pessoa.id %}" class="button">✏️ Editar</a>
+            <a href="{% url 'delete' pessoa.id %}" class="button button-delete">🗑️ Excluir</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="8" style="text-align:center;">Nenhuma pessoa na lista de espera.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="count-info">
+      {% if pessoas %}
+        Total de pessoas na lista: <strong>{{ pessoas|length }}</strong>
+      {% else %}
+        Nenhuma pessoa na lista de espera ainda.
+      {% endif %}
+    </div>
+
+    <div class="comentarios-container">
+      <h2 style="text-align:center; margin-bottom:20px;">Comentários</h2>
+      {% if pessoas %}
+        {% for pessoa in pessoas %}
+          {% for avaliacao in pessoa.avaliacoes.all %}
+            <div class="comentario-item">
+              <h3>{{ pessoa.nome }}</h3>
+              <p>{{ avaliacao.comentario }}</p>
+              <p class="stars">
+                {% for i in "12345"|make_list %}
+                  {% if forloop.counter <= avaliacao.nota %}
+                    <span>★</span>
+                  {% else %}
+                    <span>☆</span>
+                  {% endif %}
+                {% endfor %}
+              </p>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      {% else %}
+        <p style="text-align:center;">Nenhum comentário recebido ainda.</p>
+      {% endif %}
+    </div>
+
+    <p style="text-align:center; margin-top:30px;">
+      <a href="{% url 'index' %}" class="button button-back">⬅️ Voltar</a>
+    </p>
+  </div>
+</body>
+</html>
